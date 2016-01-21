@@ -1,0 +1,96 @@
+package com.tiderian.fizzbuzz;
+
+/**
+ * Created by tiderian on 20/01/2016.
+ */
+public class FizzBuzzGame {
+
+    private static final int ZERO = 0;
+    private static final int THREE = 3;
+    private static final int FIVE = 5;
+
+    private static final String FIZZ = "fizz";
+    private static final String BUZZ = "buzz";
+
+    private static final String SPACE = " ";
+
+    private final int startNumber;
+    private final int endNumber;
+
+    /**
+     * Constructor
+     *
+     * @param startNumber - start of count
+     * @param endNumber - end of count (inclusive)
+     */
+    public FizzBuzzGame(final int startNumber, final int endNumber) {
+        this.startNumber = startNumber;
+        this.endNumber = endNumber;
+    }
+
+    /**
+     * play - launches the game based on the number range it was created with
+     */
+    public void play() {
+        System.out.println("Lets Play FizzBuzz");
+
+        for (int i=startNumber; i<= endNumber; i++) {
+            System.out.print(getOutputValue(i) + SPACE);
+        }
+        System.out.println();
+    }
+
+    /**
+     * getOutputValue - determines what value should be printed to the console based on the passed in number
+     *
+     * @param number
+     * @return String
+     */
+    protected String getOutputValue(int number) {
+
+        if (isMultipleOfFifteen(number)) {
+            return FIZZ + BUZZ;
+        }
+
+        if (isMultipleOfThree(number)) {
+            return FIZZ;
+        }
+
+        if (isMultipleOfFive(number)) {
+            return BUZZ;
+        }
+
+        return String.valueOf(number);
+    }
+
+    /**
+     * isMultipleOfThree - determines whether the passed in number is a multiple of 3
+     *
+     * @param number
+     * @return boolean
+     */
+    protected boolean isMultipleOfThree(int number) {
+        return number % THREE == ZERO;
+    }
+
+    /**
+     * isMultipleOfFive - determines whether the passed n number is a multiple of 5
+     *
+     * @param number
+     * @return boolean
+     */
+    protected boolean isMultipleOfFive(int number) {
+        return number % FIVE == ZERO;
+    }
+
+    /**
+     * isMultipleOfFifteen - determines whether the passed in number is a multiple of 15
+     *  if the number is a multiple of 3 and 5 then it has to be a multiple of 15
+     *
+     * @param number
+     * @return boolean
+     */
+    protected boolean isMultipleOfFifteen(int number) {
+        return isMultipleOfThree(number) && isMultipleOfFive(number);
+    }
+}
